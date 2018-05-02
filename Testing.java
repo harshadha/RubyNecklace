@@ -19,7 +19,7 @@ public class Testing {
 		if (isEmpty(b, r, g, y))
 			return 0;
 
-		if (curr == 'B') {
+		if (curr == 'B' || curr == 'Y') {
 			if (b == 0 && r == 0)
 				return 0;
 			else if (b != 0 && r != 0)
@@ -28,33 +28,15 @@ public class Testing {
 				return 1 + getMaxLength(b, r - 1, g, y, 'R');
 			else
 				return 1 + getMaxLength(b - 1, r, g, y, 'B');
-		} else if (curr == 'R') {
-			if (g == 0 && y == 0)
-				return 0;
-			else if (g != 0 && y != 0)
-				return max(1 + getMaxLength(b, r, g - 1, y, 'G'), 1 + getMaxLength(b, r, g, y - 1, 'Y'));
-			else if (g == 0)
-				return 1 + getMaxLength(b, r, g, y - 1, 'Y');
-			else
-				return 1 + getMaxLength(b, r, g - 1, y, 'G');
-		} else if (curr == 'G') {
-			if (g == 0 && y == 0)
-				return 0;
-			else if (g != 0 && y != 0)
-				return max(1 + getMaxLength(b, r, g - 1, y, 'G'), 1 + getMaxLength(b, r, g, y - 1, 'Y'));
-			else if (g == 0)
-				return 1 + getMaxLength(b, r, g, y - 1, 'Y');
-			else
-				return 1 + getMaxLength(b, r, g - 1, y, 'G');
 		} else {
-			if (b == 0 && r == 0)
+			if (g == 0 && y == 0)
 				return 0;
-			else if (b != 0 && r != 0)
-				return max(1 + getMaxLength(b - 1, r, g, y, 'B'), 1 + getMaxLength(b, r - 1, g, y, 'R'));
-			else if (b == 0)
-				return 1 + getMaxLength(b, r - 1, g, y, 'R');
+			else if (g != 0 && y != 0)
+				return max(1 + getMaxLength(b, r, g - 1, y, 'G'), 1 + getMaxLength(b, r, g, y - 1, 'Y'));
+			else if (g == 0)
+				return 1 + getMaxLength(b, r, g, y - 1, 'Y');
 			else
-				return 1 + getMaxLength(b - 1, r, g, y, 'B');
+				return 1 + getMaxLength(b, r, g - 1, y, 'G');
 		}
 
 	}
@@ -62,7 +44,7 @@ public class Testing {
 	public static void main(String[] args) {
 
 		int result;
-		int b = 1, r = 1, g = 1, y = 1;
+		int b = 2, r = 1, g = 0, y = 1;
 
 		if (b != 0 && r != 0)
 			result = max(getMaxLength(b, r, g, y, 'B'), getMaxLength(b, r, g, y, 'R'));
